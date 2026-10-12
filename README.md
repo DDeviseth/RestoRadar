@@ -107,7 +107,7 @@ Default database: `dbRestaurants`; collection: `restaurants`. Both are configura
 
 ## Deploy to Vercel
 
-Deploy this entire folder, not only `dist`. Set the project Root Directory to the folder containing this package.json (use `app` if uploading the parent workspace). Build command: `npm run build`; output: `dist`. Keep `api/index.js`, `server.js`, `auth.js`, `model.js`, `vercel.json`, and `data/restaurants.json` in the uploaded source. vercel.json routes /api requests to a Node function and includes the dataset in that function. The JSON file is backend data, so it does not appear in the public dist folder.
+Deploy this entire folder, not only `dist`. Set the project Root Directory to the folder containing this package.json (use `app` if uploading the parent workspace). Build command: `npm run build`; output: `dist`. Keep `api/index.js`, `server.js`, `auth.js`, `network.js`, `model.js`, `vercel.json`, and `data/restaurants.json` in the uploaded source. vercel.json routes /api requests to a Node function and includes the dataset in that function. The JSON file is backend data, so it does not appear in the public dist folder.
 
 Without Atlas, Vercel is a read-only preview because function-local file writes are not durable. Add MONGODB_URI, MONGODB_DB and MONGODB_COLLECTION in Vercel environment settings for database-backed operation, import the dataset separately, and redeploy. Configure administrator credentials before using hosted editing.
 
@@ -150,7 +150,11 @@ Admin Login is in the footer. Administrator routes and restaurant mutations requ
 - `src/api.js`: shared API requests and error handling.
 - `src/constants.js`: borough names and display themes.
 - `src/photo-selection.js`: selection of illustrative photos.
-- `server.js`, `auth.js`, `model.js`: API routes, administrator sessions, and database logic.
+- `server.js`, `auth.js`, `network.js`, `model.js`: API routes, administrator sessions, and database logic.
 - `tests/`: behavioral checks for data, authentication, photos, and hosting.
 
 Run `npm run format` to format the source, or `npm run format:check` to check it. Data, private settings, generated builds, and image assets are excluded.
+
+### Atlas DNS troubleshooting
+
+If the importer reports `querySrv ECONNREFUSED`, the DNS resolver may be refusing SRV lookups. On the affected machine, set `MONGODB_DNS_SERVERS=8.8.8.8,1.1.1.1` in `.env`, then retry `npm run import:atlas`. This changes DNS resolution only inside the Node process; Windows network settings remain unchanged. Leave this setting unset on networks where the standard resolver works. The import uses `BSON.EJSON` and preserves existing restaurant IDs.

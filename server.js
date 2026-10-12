@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import './network.js';
 import express from 'express';
 import { installAuth } from './auth.js';
 import { MongoClient } from 'mongodb';

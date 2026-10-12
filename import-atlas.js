@@ -1,5 +1,7 @@
 import 'dotenv/config';
-import { MongoClient, EJSON } from 'mongodb';
+import './network.js';
+import { MongoClient, BSON } from 'mongodb';
+const { EJSON } = BSON;
 import { readFile } from 'node:fs/promises';
 if (!process.env.MONGODB_URI) throw Error('Set MONGODB_URI in .env first.');
 const client = new MongoClient(process.env.MONGODB_URI);
