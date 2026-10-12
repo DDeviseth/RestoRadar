@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+data/local-records.json
+test-results/
+.admin-access.txt
+
+.env.*
+!.env.example
+*.log

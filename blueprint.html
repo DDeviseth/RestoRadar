@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>RestoRadar Blueprint</title
+  ><style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 45px auto;
+      color: #172c32;
+      line-height: 1.5;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td,
+    th {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    pre {
+      white-space: pre-wrap;
+      background: #f5f5ef;
+      padding: 20px;
+    }
+    @media print {
+      body {
+        margin: 0;
+        font-size: 11pt;
+      }
+      h2 {
+        break-after: avoid;
+      }
+      tr {
+        break-inside: avoid;
+      }
+    }
+  </style>
+  <h1>RestoRadar</h1>
+  <p>Restaurant database application · Printed blueprint</p>
+  <h2>Application structure</h2>
+  <pre>
+Discover → Directory → Restaurant details → Inspection history
+Discover → Search by name / cuisine / borough
+Discover → Borough explorer → Filtered directory
+Discover → Insights → Aggregate rankings
+Manage records → Add / Edit / Confirm delete
+Manage records → Inspection records
+React + HeroUI + Lucide → HTTP JSON API → Express
+Express → MongoDB Atlas, or persistent local development dataset</pre>
+  <h2>Data model</h2>
+  <table>
+    <tr>
+      <th>Field</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td>restaurant_id</td>
+      <td>Unique eight-digit identifier</td>
+    </tr>
+    <tr>
+      <td>name, cuisine, borough</td>
+      <td>Restaurant identity and search/group fields</td>
+    </tr>
+    <tr>
+      <td>address</td>
+      <td>Building, street, ZIP code, retained coordinates</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>Editable, derived from recorded fields by default</td>
+    </tr>
+    <tr>
+      <td>grades[]</td>
+      <td>Inspection date, grade and score</td>
+    </tr>
+  </table>
+  <h2>Database operations</h2>
+  <p>
+    Read: search, filter, paginate and view details. Add: validate and reject duplicate IDs. Edit:
+    preserve ID and inspections. Delete: require confirmation. Group: $group by borough, $sum one
+    per record. Aggregate: $unwind grades, $group by restaurant_id, $sum scores, $match minimum,
+    $sort descending, $limit.
+  </p>
+  <h2>Design</h2>
+  <p>
+    Neighborhood guide: cream, navy, orange, sage and distinct borough colors. Familiar navigation,
+    labeled forms and responsive tables. Inspection scores are not customer ratings.
+  </p>
+  <h2>Submission</h2>
+  <p>
+    Page screenshots, complete code, official AI declaration, official peer evaluation, title page
+    and this blueprint. Atlas synchronization needs separate verification.
+  </p>
+</html>

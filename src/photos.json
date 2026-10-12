@@ -1,0 +1,282 @@
+[
+  {
+    "file": "pizza",
+    "id": 2067401,
+    "alt": "Pizza on a plate",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/2067401/"
+  },
+  {
+    "file": "bakery",
+    "id": 7426475,
+    "alt": "Croissant and coffee",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/7426475/"
+  },
+  {
+    "file": "noodles",
+    "id": 4223921,
+    "alt": "A bowl of noodles",
+    "group": "noodles",
+    "source": "https://www.pexels.com/photo/4223921/"
+  },
+  {
+    "file": "burger",
+    "id": 572981,
+    "alt": "Burger and fries",
+    "group": "burger",
+    "source": "https://www.pexels.com/photo/572981/"
+  },
+  {
+    "file": "new-york",
+    "id": 4451722,
+    "alt": "A New York city street",
+    "group": "city",
+    "source": "https://www.pexels.com/photo/4451722/"
+  },
+  {
+    "file": "sushi-rolls",
+    "id": 3297803,
+    "alt": "Close-up of sushi",
+    "group": "japanese",
+    "source": "https://www.pexels.com/photo/3297803/"
+  },
+  {
+    "file": "sushi-maki",
+    "id": 4725610,
+    "alt": "Sushi rolls",
+    "group": "japanese",
+    "source": "https://www.pexels.com/photo/4725610/"
+  },
+  {
+    "file": "tacos-platter",
+    "id": 8448174,
+    "alt": "Tacos on a plate",
+    "group": "mexican",
+    "source": "https://www.pexels.com/photo/8448174/"
+  },
+  {
+    "file": "mexican-table",
+    "id": 6400005,
+    "alt": "Mexican food spread",
+    "group": "mexican",
+    "source": "https://www.pexels.com/photo/6400005/"
+  },
+  {
+    "file": "tacos-closeup",
+    "id": 14179985,
+    "alt": "Tacos with fresh toppings",
+    "group": "mexican",
+    "source": "https://www.pexels.com/photo/14179985/"
+  },
+  {
+    "file": "curry-rice",
+    "id": 9213999,
+    "alt": "Curry and rice",
+    "group": "indian",
+    "source": "https://www.pexels.com/photo/9213999/"
+  },
+  {
+    "file": "indian-curry",
+    "id": 35629938,
+    "alt": "Indian chicken curry",
+    "group": "indian",
+    "source": "https://www.pexels.com/photo/35629938/"
+  },
+  {
+    "file": "breakfast-croissant",
+    "id": 33848994,
+    "alt": "Croissant breakfast with coffee",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/33848994/"
+  },
+  {
+    "file": "warm-croissant",
+    "id": 31479308,
+    "alt": "Croissant and coffee",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/31479308/"
+  },
+  {
+    "file": "cafe-croissant",
+    "id": 24706518,
+    "alt": "Cafe croissant and coffee",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/24706518/"
+  },
+  {
+    "file": "italian-table",
+    "id": 6223229,
+    "alt": "Pizza and pasta spread",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/6223229/"
+  },
+  {
+    "file": "italian-feast",
+    "id": 31142295,
+    "alt": "Italian pizza and pasta",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/31142295/"
+  },
+  {
+    "file": "breakfast-sandwich",
+    "id": 3129826,
+    "alt": "Egg and bacon breakfast sandwich",
+    "group": "sandwich",
+    "source": "https://www.pexels.com/photo/3129826/"
+  },
+  {
+    "file": "cheeseburger",
+    "id": 1639562,
+    "alt": "Cheeseburger",
+    "group": "burger",
+    "source": "https://www.pexels.com/photo/1639562/"
+  },
+  {
+    "file": "seafood-salad",
+    "id": 28647101,
+    "alt": "Mixed seafood salad",
+    "group": "seafood",
+    "source": "https://www.pexels.com/photo/28647101/"
+  },
+  {
+    "file": "ice-cream-cup",
+    "id": 16630827,
+    "alt": "Ice cream in a dessert cup",
+    "group": "dessert",
+    "source": "https://www.pexels.com/photo/16630827/"
+  },
+  {
+    "file": "vegetable-salad",
+    "id": 9275170,
+    "alt": "Vegetable salad",
+    "group": "salad",
+    "source": "https://www.pexels.com/photo/9275170/"
+  },
+  {
+    "file": "garden-salad",
+    "id": 31300918,
+    "alt": "Garden salad",
+    "group": "salad",
+    "source": "https://www.pexels.com/photo/31300918/"
+  },
+  {
+    "file": "grilled-steak",
+    "id": 27305268,
+    "alt": "Grilled steak with lemon",
+    "group": "steak",
+    "source": "https://www.pexels.com/photo/27305268/"
+  },
+  {
+    "file": "dumplings",
+    "id": 3893668,
+    "alt": "Dumplings on a plate",
+    "group": "dumplings",
+    "source": "https://www.pexels.com/photo/dumplings-on-a-plate-3893668/"
+  },
+  {
+    "file": "sushi-platter",
+    "id": 343870,
+    "alt": "Sushi platter",
+    "group": "japanese",
+    "source": "https://www.pexels.com/photo/343870/"
+  },
+  {
+    "file": "sushi-black-plate",
+    "id": 19564492,
+    "alt": "Sushi on a black plate",
+    "group": "japanese",
+    "source": "https://www.pexels.com/photo/19564492/"
+  },
+  {
+    "file": "sushi-sauce",
+    "id": 14188062,
+    "alt": "Sushi with sauce",
+    "group": "japanese",
+    "source": "https://www.pexels.com/photo/14188062/"
+  },
+  {
+    "file": "noodle-soup",
+    "id": 10172749,
+    "alt": "Chicken noodle soup",
+    "group": "noodles",
+    "source": "https://www.pexels.com/photo/10172749/"
+  },
+  {
+    "file": "asian-noodle-bowl",
+    "id": 36771456,
+    "alt": "Asian noodles in a bowl",
+    "group": "noodles",
+    "source": "https://www.pexels.com/photo/36771456/"
+  },
+  {
+    "file": "chinese-noodle-soup",
+    "id": 13020723,
+    "alt": "Chinese noodle soup",
+    "group": "noodles",
+    "source": "https://www.pexels.com/photo/13020723/"
+  },
+  {
+    "file": "pizza-slice",
+    "id": 842519,
+    "alt": "Pepperoni pizza slices",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/842519/"
+  },
+  {
+    "file": "pastry-display",
+    "id": 3639541,
+    "alt": "Bakery breads and pastries",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/3639541/"
+  },
+  {
+    "file": "croissant-plate",
+    "id": 15738018,
+    "alt": "Fresh croissants on a plate",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/15738018/"
+  },
+  {
+    "file": "flaky-croissant",
+    "id": 15738009,
+    "alt": "Close-up of croissants",
+    "group": "bakery",
+    "source": "https://www.pexels.com/photo/15738009/"
+  },
+  {
+    "file": "bacon-cheeseburger",
+    "id": 12454679,
+    "alt": "Bacon cheeseburger",
+    "group": "burger",
+    "source": "https://www.pexels.com/photo/12454679/"
+  },
+  {
+    "file": "lettuce-cheeseburger",
+    "id": 10322494,
+    "alt": "Burger with lettuce and cheese",
+    "group": "burger",
+    "source": "https://www.pexels.com/photo/10322494/"
+  },
+  {
+    "file": "cheese-pull",
+    "id": 11400977,
+    "alt": "Pizza with melted cheese",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/11400977/"
+  },
+  {
+    "file": "pepperoni-slice",
+    "id": 2741457,
+    "alt": "Pepperoni pizza slice",
+    "group": "italian",
+    "source": "https://www.pexels.com/photo/2741457/"
+  },
+  {
+    "file": "white-chocolate-cake",
+    "id": 14107,
+    "alt": "White chocolate cake",
+    "group": "dessert",
+    "source": "https://www.pexels.com/photo/14107/"
+  }
+]

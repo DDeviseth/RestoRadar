@@ -1,0 +1,8 @@
+node_modules/
+dist/
+data/
+screenshots/
+public/images/
+package-lock.json
+.env
+.admin-access.txt
