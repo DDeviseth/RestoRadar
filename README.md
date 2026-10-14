@@ -1,24 +1,36 @@
 # RestoRadar
 
-Restaurant directory using React, HeroUI v2, Lucide, Express and the supplied 3,772-record dataset. Descriptions summarize actual recorded fields and are editable. No phone fields.
+A restaurant directory built with **React, HeroUI v2, Lucide, Express, and MongoDB Atlas**, featuring a supplied dataset of 3,772 restaurant records.
 
-## Install and run locally
+Restaurant descriptions summarize recorded fields and are editable. No phone fields are included.
 
-### What you need
+## Features
 
-- Node.js and npm. This project has been tested with **Node.js 24**. Check your installation with `node --version` and `npm --version`.
-- The complete project folder, including `package.json`, `package-lock.json`, `data/restaurants.json`, and `public/images`.
-- A terminal such as Windows PowerShell. MongoDB Atlas is optional for local use.
+- Search by restaurant name, cuisine, and borough
+- Filtering, pagination, cards, and tables
+- Borough grouping and configurable inspection-score aggregation
+- Restaurant details and inspection history
+- Administrator dashboard for adding, editing, and deleting records
+- Validated forms and confirmed deletions
 
-### 1. Open the app folder
+> **Note:** Inspection scores are historical records, not customer star ratings.
 
-Open a terminal in the folder containing `package.json`. If you have the complete workspace, this is its `app` folder.
+## Requirements
+
+- Node.js 24 and npm
+- Complete project folder with `package.json`, `data/restaurants.json`, and `public/images`
+- Internet connection for installing dependencies
+- MongoDB Atlas for persistent hosted edits and database synchronization
+
+## Installation
+
+### 1. Navigate to the project folder
 
 ```powershell
 cd "C:\path\to\RestoRadar\app"
 ```
 
-Replace the example path with your actual folder location. If your downloaded project has `package.json` directly inside `RestoRadar`, open that folder instead.
+Open the folder containing `package.json`.
 
 ### 2. Install dependencies
 
@@ -26,135 +38,152 @@ Replace the example path with your actual folder location. If your downloaded pr
 npm install
 ```
 
-Wait for installation to finish. Internet access is needed for this step; the included photos and restaurant data do not need to be downloaded separately.
+If PowerShell blocks `npm.ps1`, use `npm.cmd install`.
 
-### 3. Configure local administrator access
+### 3. Configure environment variables
 
-For a fresh installation, copy the example settings:
+Copy the example environment file:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-If `.env` already exists, edit it instead of overwriting it. Open `.env` in a text editor and set these values for the classroom demo:
+Configure `.env`:
 
 ```dotenv
 PORT=5173
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin123
 MONGODB_URI=
+SESSION_SECRET=your-generated-secret
 ```
 
-Leave `MONGODB_URI` empty to use the included dataset. Generate the session signing secret with this command, from the same app folder:
+Generate a secure session secret:
 
 ```powershell
-node -e "const fs=require('node:fs');const crypto=require('node:crypto');const text=fs.readFileSync('.env','utf8');fs.writeFileSync('.env',text.replace(/^SESSION_SECRET=.*$/m,'SESSION_SECRET='+crypto.randomBytes(48).toString('hex')));"
+node -e "console.log(require('node:crypto').randomBytes(48).toString('hex'))"
 ```
 
-This replaces the blank `SESSION_SECRET` line supplied in `.env.example`. Keep `.env` private. Generating a new secret invalidates existing sign-in sessions. The login page intentionally displays `admin` / `admin123` as classroom example credentials.
+Replace `your-generated-secret` with the generated value. Keep `.env` private and never commit it to GitHub.
 
-### 4. Start the app
+### 4. Start the application
 
 ```powershell
 npm run dev
 ```
 
-Keep the terminal open and visit **http://localhost:5173**. Use the address printed in the terminal if you changed `PORT`. Click **Admin Login** in the footer and sign in with `admin` / `admin123` to add, edit, or delete records.
+Open **http://localhost:5173** in your browser.
 
-To stop the app, press **Ctrl+C** in the terminal. To start it again, run `npm run dev`; you do not need to reinstall dependencies each time.
+Click **Admin Login** in the footer to manage restaurant records. The example credentials are `admin` / `admin123` when configured as shown above.
 
-### Local data
+Press `Ctrl+C` to stop the server.
 
-Without an Atlas connection, the application displays **Local dataset**. Changes persist in `data/local-records.json`; the original `data/restaurants.json` stays untouched. Local mode does not satisfy the course's Atlas synchronization requirement.
+## Data Storage
 
-### Run the built version
+### Local Mode
+
+When `MONGODB_URI` is empty, the application uses the included dataset. Changes are saved to `data/local-records.json`, leaving the original `data/restaurants.json` unchanged.
+
+Local mode does not satisfy the Atlas synchronization requirement.
+
+### MongoDB Atlas
+
+1. Create an Atlas cluster and database user.
+2. Allow your development IP address.
+3. Set `MONGODB_URI` in `.env`.
+4. Import the dataset:
+
+   ```powershell
+   npm run import:atlas
+   ```
+
+5. Restart the application and verify the connection and record count.
+
+Default database: `dbRestaurants`
+
+Default collection: `restaurants`
+
+Both are configurable.
+
+## Build and Test
+
+Run the automated tests and build the frontend:
 
 ```powershell
+npm test
 npm run build
+```
+
+To run the production build locally:
+
+```powershell
 $env:NODE_ENV="production"
 npm start
 ```
 
-Open the same local address. To return to development mode in that PowerShell window, stop the server and run:
+## Deployment to Vercel
 
-```powershell
-Remove-Item Env:NODE_ENV -ErrorAction SilentlyContinue
-npm run dev
+1. Deploy the complete application source, not just the `dist` folder.
+2. Set the project Root Directory to the folder containing `package.json`.
+3. Set the build command to `npm run build`.
+4. Set the output directory to `dist`.
+5. Configure these environment variables in Vercel:
+
+   - `MONGODB_URI`
+   - `MONGODB_DB`
+   - `MONGODB_COLLECTION`
+   - `ADMIN_USERNAME`
+   - `ADMIN_PASSWORD`
+   - `SESSION_SECRET`
+
+6. Import the dataset into Atlas and redeploy.
+
+**Important:** Without MongoDB Atlas, the Vercel deployment is read-only because serverless file changes are not durable.
+
+## Security
+
+- Administrator routes and mutations require authentication.
+- Sessions use signed, HttpOnly, SameSite=Strict cookies and expire after eight hours.
+- Vercel uses Secure cookies.
+- Keep administrator credentials and session secrets out of frontend code and version control.
+- Hosted editing requires MongoDB Atlas for persistent storage.
+
+## Project Structure
+
+```text
+app/
+├── api/
+│   └── index.js
+├── data/
+│   └── restaurants.json
+├── public/
+│   └── images/
+├── src/
+│   ├── components/
+│   ├── api.js
+│   ├── constants.js
+│   ├── main.jsx
+│   └── photo-selection.js
+├── tests/
+├── auth.js
+├── model.js
+├── network.js
+├── server.js
+├── package.json
+├── vercel.json
+└── .env.example
 ```
 
-### Troubleshooting
+## Formatting
 
-| Problem                               | What to do                                                                                                                                              |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `node` or `npm` is not recognized     | Install Node.js with npm, then reopen the terminal.                                                                                                     |
-| PowerShell blocks `npm.ps1`           | Use `npm.cmd install` and `npm.cmd run dev` instead.                                                                                                    |
-| `package.json` cannot be found        | Open the app folder that contains `package.json`.                                                                                                       |
-| The browser cannot connect            | Keep the server running and open the exact address printed in the terminal.                                                                             |
-| Port is already in use                | Stop the previous server, or change `PORT` in `.env` to `5174` and restart.                                                                             |
-| Admin Login says it is not configured | Set `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `SESSION_SECRET` in `.env`, then restart.                                                                   |
-| Incorrect username or password        | Confirm the values in `.env`; restart after editing them.                                                                                               |
-| Restaurant API unavailable            | Start the application with `npm run dev` or the production commands above. Opening `index.html` directly or serving only `dist` does not start the API. |
-| Dataset is missing                    | Restore `data/restaurants.json` from the complete project files.                                                                                        |
+Format the source code:
 
-## Connect Atlas
+```powershell
+npm run format
+```
 
-1. Create an Atlas cluster and database user, and allow your development computer's IP address.
-2. Copy `.env.example` to `.env` and set `MONGODB_URI`. Keep credentials private.
-3. Run `npm run import:atlas`. It inserts missing IDs and preserves existing records. Extended JSON dates become MongoDB dates.
-4. Restart `npm run dev`; confirm **MongoDB Atlas** and the expected count.
+Check formatting without modifying files:
 
-Default database: `dbRestaurants`; collection: `restaurants`. Both are configurable. Atlas mode uses insertOne, updateOne, deleteOne and aggregate pipelines.
-
-## Deploy to Vercel
-
-Deploy this entire folder, not only `dist`. Set the project Root Directory to the folder containing this package.json (use `app` if uploading the parent workspace). Build command: `npm run build`; output: `dist`. Keep `api/index.js`, `server.js`, `auth.js`, `network.js`, `model.js`, `vercel.json`, and `data/restaurants.json` in the uploaded source. vercel.json routes /api requests to a Node function and includes the dataset in that function. The JSON file is backend data, so it does not appear in the public dist folder.
-
-Without Atlas, Vercel is a read-only preview because function-local file writes are not durable. Add MONGODB_URI, MONGODB_DB and MONGODB_COLLECTION in Vercel environment settings for database-backed operation, import the dataset separately, and redeploy. Configure administrator credentials before using hosted editing.
-
-## Verify / build
-
-Run `npm test` and `npm run build`. For the built app set `NODE_ENV=production`, then run `npm start`.
-
-## Behavior
-
-Search by name/cuisine/borough; filters and pagination; cards/tables; borough groups; configurable score aggregation; details with complete inspection history; administrator restaurant and inspection views; validated add/edit and confirmed delete.
-
-Inspection scores are historical records, not customer star ratings. Aggregate sums every recorded inspection score and sorts descending. New restaurants have no inspections. Editing preserves ID, inspection history and coordinates. The administrator workspace and mutation endpoints require administrator sign-in.
-
-## Submission
-
-Capture home, directory, search by name, search by cuisine, boroughs, insights, details, management, inspection records, add/edit and delete confirmation. Include complete source and package lock; omit node_modules and .env. Print blueprint.html. Add a title page with actual student/group/course details. Complete the instructor's AI declaration and peer evaluation forms honestly. Signatures and peer assessments come from students.
-
-## AI-use declaration
-
-See `AI_USE_NOTES.md` when completing the required declaration.
-
-## References
-
-[HeroUI v2](https://v2.heroui.com/docs/guide/introduction), [MongoDB Node CRUD reference](https://www.mongodb.com/docs/drivers/node/current/reference/quick-reference/). Included dataset: `data/restaurants.json`.
-
-Atlas synchronization remains unverified until configured and tested against your account.
-
-Dependency audit: seven reported findings in the Tailwind v3 pattern/selector tooling dependency chain (five high, two moderate). The suggested automatic fix migrates to Tailwind v4 and is incompatible with this configured HeroUI v2 setup; no forced migration was applied. This limitation is recorded for future maintenance.
-
-Real stock photography is bundled in public/images; source links and license are recorded in public/photo-credits.html. Photos illustrate cuisines and New York and are not individual restaurant photos.
-
-## Administrator access
-
-Admin Login is in the footer. Administrator routes and restaurant mutations require a signed, HttpOnly, SameSite=Strict session cookie, expiring after eight hours. Configure ADMIN_USERNAME, ADMIN_PASSWORD, and SESSION_SECRET in server environment settings. For Vercel, set all three variables in project environment settings and redeploy; credentials are never embedded in the frontend. Vercel cookies use Secure. Sign-out clears the browser cookie. Password changes should also rotate SESSION_SECRET. Login attempts are throttled within a server instance; multi-instance production hosting needs a shared rate limiter. Atlas remains required for hosted durable edits.
-
-## Source organization and formatting
-
-- `src/main.jsx`: application state, navigation, and page composition.
-- `src/components/`: administrator login, restaurant editor, and photo display.
-- `src/api.js`: shared API requests and error handling.
-- `src/constants.js`: borough names and display themes.
-- `src/photo-selection.js`: selection of illustrative photos.
-- `server.js`, `auth.js`, `network.js`, `model.js`: API routes, administrator sessions, and database logic.
-- `tests/`: behavioral checks for data, authentication, photos, and hosting.
-
-Run `npm run format` to format the source, or `npm run format:check` to check it. Data, private settings, generated builds, and image assets are excluded.
-
-### Atlas DNS troubleshooting
-
-If the importer reports `querySrv ECONNREFUSED`, the DNS resolver may be refusing SRV lookups. On the affected machine, set `MONGODB_DNS_SERVERS=8.8.8.8,1.1.1.1` in `.env`, then retry `npm run import:atlas`. This changes DNS resolution only inside the Node process; Windows network settings remain unchanged. Leave this setting unset on networks where the standard resolver works. The import uses `BSON.EJSON` and preserves existing restaurant IDs.
+```powershell
+npm run format:check
+```
